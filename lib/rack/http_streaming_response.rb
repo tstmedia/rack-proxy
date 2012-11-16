@@ -32,7 +32,7 @@ module Rack
     def each(&block)
       response.read_body(&block)
     ensure
-      session.end_request_hacked
+      session.end_request_hacked unless mocking?
     end
     
     def to_s
@@ -51,7 +51,7 @@ module Rack
     
     # Net::HTTPResponse
     def response
-      if defined?(WebMock) || defined?(FakeWeb)
+      if mocking?
         @response ||= session.request(@request)
       else
         @response ||= session.begin_request_hacked(@request)
@@ -67,6 +67,10 @@ module Rack
         http.read_timeout = self.timeout unless self.timeout.nil?
         http.start
       end
+    end
+
+    def mocking?
+      defined?(WebMock) || defined?(FakeWeb)
     end
     
   end
