@@ -1,9 +1,11 @@
-A request/response rewriting HTTP proxy. A Rack app.
+# A request/response rewriting HTTP proxy. A Rack app.
+
+[![Build Status](https://secure.travis-ci.org/tstmedia/rack-proxy.png?branch=master)](https://travis-ci.org/tstmedia/rack-proxy)
 
 Subclass Rack::Proxy and provide your rewrite_env and rewrite_response methods.
 
 Example:
-
+```ruby
 class Foo < Rack::Proxy
 
   def rewrite_env(env)
@@ -21,7 +23,7 @@ class Foo < Rack::Proxy
   end
 
 end
-
+```
 See tests for more examples.
 
 WARNING: Doesn't work with fakeweb/webmock. Both libraries monkey-patch net/http code.
