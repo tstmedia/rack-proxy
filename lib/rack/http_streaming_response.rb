@@ -51,7 +51,11 @@ module Rack
     
     # Net::HTTPResponse
     def response
-      @response ||= session.begin_request_hacked(@request)
+      if defined?(Webmock) || defined?(Fakeweb)
+        @response ||= session.request(@request)
+      else
+        @response ||= session.begin_request_hacked(@request)
+      end
     end
     
     # Net::HTTP
