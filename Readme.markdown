@@ -1,29 +1,3 @@
-# A request/response rewriting HTTP proxy. A Rack app.
+# This Repository Has Moved
 
-[![Build Status](https://secure.travis-ci.org/tstmedia/rack-proxy.png?branch=master)](https://travis-ci.org/tstmedia/rack-proxy)
-
-Subclass Rack::Proxy and provide your rewrite_env and rewrite_response methods.
-
-Example:
-```ruby
-class Foo < Rack::Proxy
-
-  def rewrite_env(env)
-    env["HTTP_HOST"] = "example.com"
-
-    env
-  end
-
-  def rewrite_response(triplet)
-    status, headers, body = triplet
-
-    headers["X-Foo"] = "Bar"
-
-    triplet
-  end
-
-end
-```
-See tests for more examples.
-
-WARNING: Doesn't work with fakeweb/webmock. Both libraries monkey-patch net/http code.
+No new commits will be made here. Visit [sportngin/rack-proxy](https://github.com/sportngin/rack-proxy) for the latest work on this project.
